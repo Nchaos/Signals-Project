@@ -1,0 +1,29 @@
+function [  ] = modulator( f0,fs, fc )
+%modulator Summary of this function goes here
+%   Detailed explanation goes here
+%   f0 frequency 
+%   fs frequency sampling
+%   yt signal (voice)
+%   fc frequncy carrier
+%   yc carrier signal
+
+yt = sin(2*pi*f0*t);
+
+fSampling = fs;
+tSampling = 1/fSampling;
+t = -0.005:tSampling:0.005;
+
+y= yt.*cos(2*pi*fc*t);
+
+mody_fft = fft(y);
+n = numel(mody_fft); 
+f = 0:fSampling/n:fSampling*(n-1)/n;
+
+y2 = y.*yc;
+mody2_fft = fft(y2);
+n2 = numel(mody2_fft);
+f2 = 0:fSampling/n2:fSampling*(n2-1)/n2;
+plot(f2, abs(mody2_fft))
+
+end
+

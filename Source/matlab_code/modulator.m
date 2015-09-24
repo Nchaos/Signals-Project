@@ -11,6 +11,7 @@ fSampling = fs;
 tSampling = 1/fSampling;
 t = -0.005:tSampling:0.005;
 
+
 yt = sin(2*pi*f0*t);
 
 y= yt.*cos(2*pi*fc*t);

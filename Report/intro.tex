@@ -1,0 +1,25 @@
+The nature of this paper is laid out by the four internal sections, each describes the process undergone for implementing the particular component of the system.
+Due to the tiered nature of this project, each section of the report is broken down further into four subsections, indicating the difficulty level of each contribution made to the overall component.
+
+The system that we are implementing begins at a very simple level. The stages of the project are re-iterated here: 
+
+\begin{figure}[h!]
+\caption{Project Component Specifications\label{tab:projspec}}
+\begin{center}
+\begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+\hline 
+\textbf{message}&\textbf{transmitter}&\textbf{channel}&\textbf{receiver}\\ 
+\hline 
+sinusoid&simple AM Mixer& Noiseless \& lossless &Simple Mixer and Low Pass Filter\\ 
+\hline 
+sqaure \& triangle wave \& pulse trains &  & Attenuation & Simple mixer out of phase or frequency\\ 
+\hline 
+Voice (recorded)& AM-QAM & Attenuation, Dispersion, Nonlinearity& AM-QAM\\ 
+\hline 
+Pseudo-random pulse trains& & Channel fading with random fades & Noise injected before received\\
+\hline 
+\end{tabular}
+\end{center}
+\end{figure} 
+
+The project itself is to design and implement a system capable of emulating the parameters specified on the bottom row of \ref{tab:projspec}. 

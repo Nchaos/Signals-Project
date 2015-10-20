@@ -1,0 +1,28 @@
+The nature of representing a message on a discrete device (computer) already poses some challenges. 
+For instance, a continuous sine wave as was suggested as the message in the first level. 
+A sine wave is a continuous function of it's parameter (in the case of a message the parameter is the time or $t$), and as such can not be perfectly represented on a machine, as there are an infinite(uncountable) number of values in the domain, mapping to an infinite number of values in the range. 
+This problem is initially solved using a sampling frequency that determines the rate of sampling for a particular continuous function, and storing off all of the function values for each time $t_i$ for which we are sampling. 
+Hence we are able to store an approximation of a continuous function to enough resolution by fine tuning the sampling frequency such that it is virtually indistinguishable from it's continuous counterpart. 
+It is important to note that the sampling frequency of the original message constricts the range of frequencies that can be adapted for the carrier frequency of the modulated carrier waveform to be less than that of the sampling frequency of the original message. 
+
+\subsection{level 1}
+The message for level one of the project is a simple sine wave. 
+To address some of the problems discussed above, we set up a sampling frequency.
+The below listing is a display of the methodology used to set up the message for level one of the project. 
+
+\begin{figure}
+\begin{center}
+\begin{lstlisting}
+F0 = 2000; % Frequency of the sine wave or the message.  
+fSampling = 30000; % Sampling rate for message in hertz. 
+tSampling = 1/fSampling; % The sampling period for the message seconds. 
+t = -0.005:tSampling:0.005; % The range of specific times for which the function is evaluated. 
+
+yt = sin(2*pi*F0*t); % The message is a sine wave at frequency F0, for the values of t above. \end{lstlisting}
+\end{center}
+\end{figure}
+
+
+
+\subsection{level 3}
+\subsection{level 4}

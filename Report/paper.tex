@@ -1,0 +1,66 @@
+\documentclass{IEEEtran}
+
+%For the matlab code we are going to list we will be using the listings package from latex. 
+\usepackage{listings}
+\usepackage{color}
+
+%The setup for the listings package. 
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%End setup for listings package. 
+
+
+
+
+
+\title{Signals and Systems Project \author{Andrew Buck, Nick Chao, and Micah Thornton}}
+
+\begin{document}
+\maketitle{} 
+
+\begin{abstract}
+\input{abst.tex}
+\end{abstract}
+
+\tableofcontents{} 
+
+\section{Introduction}
+\input{intro.tex}
+
+\section{The Message}
+\input{mess.tex}
+
+\section{Transmission}
+\input{trans.tex}
+
+\section{Channel}
+\input{ch.tex}
+
+\section{Receiver}
+\input{rec.tex}
+
+\section{Conclusion}
+\input{conc.tex}
+
+
+\end{document}

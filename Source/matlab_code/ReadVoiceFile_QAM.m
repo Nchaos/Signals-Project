@@ -13,36 +13,25 @@ m2 = m2';
 
 
 
-
 Length = length(m);
-t = (0 : Length - 1)/Fs;
-
 Length2 = length(m2);
-m2_t = (0 : Length2 -1)/Fs2;
-
-M2 = fftshift(fft(m2, Length2));
-M2_sig = abs(M2);
-freqm2 = (-Length2/2 : Length2/2 -1)/(Length2/ts2);
+t = (0 : Length - 1)/Fs;
+t2 = (0:Length2 -1)/Fs2;
 
 
 M = fftshift(fft(m, Length));
 M_sig = abs(M);
 freqm = (-Length/2 : Length/2 -1)/(Length/ts);
 
-B_m2 = 5000;
-h2 = fir1(40,[B_m2*ts2]);
+
 
 B_m = 5000;
 h=fir1(40,[B_m*ts]);
 
 fc = 40000;
-s_dsb2 = m2.*sin(2*pi*fc*m2_t);
 s_dsb = m.*cos(2*pi*fc*t);
 lfft= length(t);
-lfft_m2 = length(m2_t);
 lfft = 2^ceil(log2(lfft)+1);
-lfft_m2 = 2^ceil(log2(lfft_m2)+1);
-
 S_dsb = fftshift(fft(s_dsb,lfft));
 freqs = (-lfft/2:lfft/2-1)/(lfft*ts);
 %am modulation

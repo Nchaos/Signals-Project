@@ -47,10 +47,7 @@ S_dem2=fftshift(fft(s_dem2,Lfft)); % Demodulatede signal in frequency domain
 
 
 figure, plot(t,m);
-figure, plot(t,m2);
-figure, plot(t, s_qam);
-figure, plot(t, s_dem1);
-figure, plot(t, s_dem2);
+figure, plot(t,m);
 
 
 
@@ -73,7 +70,7 @@ S_dem=fftshift(fft(s_dem,lfft));
 s_rec = filter(h,1,s_dem);
 S_rec = fftshift(fft(s_rec,lfft));
 %}
-audiowrite('voiceOutput_sdem1.wav', s_dem1, Fs);
+%audiowrite('voiceOutput_demod.wav', s_dem, Fs);
 %figure, plot(t, m);
 %figure, plot(t, s_rec);
 %figure, plot(t, s_dsb);

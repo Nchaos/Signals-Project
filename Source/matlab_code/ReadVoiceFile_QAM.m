@@ -34,6 +34,11 @@ h=fir1(40,[B_m*ts]);
 
 fc = 40000;
 s_qam = (m).*cos(2*pi*fc*t)+(m2).*sin(2*pi*fc*t);
+s_qam = s_qam.*10^-6;
+
+%inject random Gaussian white noise into signal 
+s_qam = awgn(s_qam,10,'measured');
+s_qam = s_qam.*10^6;
 Lfft=length(t);   % defining DFT (or FFT) size
 Lfft=2^ceil(log2(Lfft)+1);  % increasing Lfft by factor of 2 
 
@@ -45,14 +50,71 @@ S_dem1=fftshift(fft(s_dem1,Lfft)); % Demodulatede signal in frequency domain
 s_dem2=s_qam.*sin(2*pi*fc*t)*2; % i.e taking envelope when signal is positive and zero when signal is negative
 S_dem2=fftshift(fft(s_dem2,Lfft)); % Demodulatede signal in frequency domain
 
+s_rec1=filter(h,1,s_dem1);
+S_rec1=fftshift(fft(s_rec1,Lfft)); % Demodulatede signal in frequency domain
+s_rec2=filter(h,1,s_dem2);
+S_rec2=fftshift(fft(s_rec2,Lfft)); % Demodulatede signal in frequency domain
 
-figure, plot(t,m);
-figure, plot(t,m2);
-figure, plot(t, s_qam);
-figure, plot(t, s_dem1);
-figure, plot(t, s_dem2);
+%figure, plot(t,m);
+%figure, plot(t,m2);
+%figure, plot(t, s_qam);
+%figure, plot(t, s_dem1);
+%figure, plot(t, s_dem2);
+
+figure(1)
+subplot(221); plot(t,m) 
+title('m\_sig1')
+
+subplot(222); plot(t,s_qam)
+title('s\_qam')
+
+subplot(223); plot(t, s_dem1)
+title('s\_dem1')
+
+subplot(224); plot(t,s_rec1)
+title('s\_rec1')
+
+%%%%%%%%%%%%%%
+
+figure(2)
+subplot(221); plot(t,m2)
+title('m\_sig2')
+
+subplot(222); plot(t,s_qam)
+title('s\_qam')
+
+subplot(223); plot(t, s_dem2)
+title('s\_dem2')
+
+subplot(224); plot(t,s_rec2)
+title('s\_rec2')
+
+figure(3)
+subplot(221); plot(freqm,abs(M))
+title('M1\_sig')
+
+subplot(222); plot(freqs,abs(S_qam))
+title('S\_qam')
+
+subplot(223); plot(freqs, abs(S_dem1))
+title('S\_dem1')
+
+subplot(224); plot(freqs,abs(S_rec1))
+title('S\_rec1')
 
 
+figure(4)
+subplot(221); plot(freqm,abs(M2))
+title('M2\_sig')
+
+subplot(222); plot(freqs,abs(S_qam))
+title('S\_qam')
+
+subplot(223); plot(freqs, abs(S_dem2))
+title('S\_dem2')
+
+subplot(224); plot(freqs,abs(S_rec2))
+title('S\_rec2')
 
 %{
 s_dsb = m.*cos(2*pi*fc*t);
@@ -73,7 +135,7 @@ S_dem=fftshift(fft(s_dem,lfft));
 s_rec = filter(h,1,s_dem);
 S_rec = fftshift(fft(s_rec,lfft));
 %}
-audiowrite('voiceOutput_sdem1.wav', s_dem1, Fs);
+audiowrite('voiceOutput_sdem2.wav', s_dem2, Fs);
 %figure, plot(t, m);
 %figure, plot(t, s_rec);
 %figure, plot(t, s_dsb);

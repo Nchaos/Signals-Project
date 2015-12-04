@@ -1,12 +1,12 @@
 clc;
 clear all;
 
-Fs = 350;
+Fs = 10000;
 ts = 1/Fs;
 Fs_slower = 150;
 t = 0:1/Fs:1;
 t_slower = 0:1/Fs_slower:1;
-f = 5;
+f = 10;
 m = sin(2*pi*f*t);
 m2 = cos(2*pi*f*t);
 m3 = sawtooth(2*pi*f*t);
@@ -28,10 +28,23 @@ X7thMag = abs(X7th);
 X7thSQ = fftshift(fft(sin_square7));
 X7thSQMag = abs(X7thSQ);
 
+X = fftshift(fft(m));
+XMag = abs(X);
+
+X2 = fftshift(fft(m2));
+XMag2 = abs(X2);
+
+X3 = fftshift(fft(m3));
+XMag3 = abs(X3);
+
+
+X4 = fftshift(fft(m3));
+XMag4 = abs(X4);
+
 df = -Fs/2:1:Fs/2;
 
-fc = 4000; 
-m_am = (sin_saw7).*cos(2*pi*fc*t);
+fc = 100; 
+m_am = (m).*cos(2*pi*fc*t);
 Lfft = length(t);
 Lfft=2^ceil(log2(Lfft));
 M_am=fftshift(fft(m_am,Lfft));
@@ -39,10 +52,10 @@ freqs=(-Lfft/2:Lfft/2-1)/(Lfft*ts);
 
 
 figure, plot(t, m_am);
-title('Modulated Square Wave');
+title('Modulated Sine Wave');
 xlabel('Time (s)');
 ylabel('Amplitude');
-
+%{
 figure, plot(freqs, abs(M_am));
 title('Modulated Square Wave - Frequency');
 xlabel('Frequency (Hz)');
@@ -74,20 +87,7 @@ ylabel('Amplitude');
 
 
 
-X = fftshift(fft(m));
-XMag = abs(X);
 
-X2 = fftshift(fft(m2));
-XMag2 = abs(X2);
-
-X3 = fftshift(fft(m3));
-XMag3 = abs(X3);
-
-
-X4 = fftshift(fft(m3));
-XMag4 = abs(X4);
-
-df = -Fs/2:1:Fs/2;
 
 
 
@@ -96,7 +96,7 @@ figure, plot(df,XMag3);
 title('Sawtooth - Frequency')
 xlabel('Frequency (Hz)');
 ylabel('Amplitude');
-%{
+
 figure(1)
 subplot(221); plot(t,m) 
 title('Sine')

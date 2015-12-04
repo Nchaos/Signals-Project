@@ -53,9 +53,9 @@ S_dem=fftshift(fft(s_dem,lfft));
 s_rec = filter(h,1,s_dem);
 S_rec = fftshift(fft(s_rec,lfft));
 %audiowrite('voiceOutput_demod.wav', s_dem, Fs);
-%figure, plot(t, m);
-%figure, plot(t, s_rec);
-%figure, plot(t, s_dsb);
+figure, plot(t, m);
+figure, plot(t, s_rec);
+figure, plot(t, s_dsb);
 %figure, plot(freq
 %figure, plot(freqm, M_sig);
 %figure, plot(freqs, abs(S_rec));
